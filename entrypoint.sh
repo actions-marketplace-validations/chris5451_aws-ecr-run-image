@@ -8,6 +8,8 @@ function main() {
   sanitize "${INPUT_ACCOUNT_ID}" "account_id"
   sanitize "${INPUT_REPO}" "repo"
   sanitize "${INPUT_TAG}" "tag"
+  sanitize "${INPUT_PORT}" "port"
+  sanitize "${INPUT_NAME}" "name"
 
   PULL_URL="$INPUT_ACCOUNT_ID.dkr.ecr.$INPUT_REGION.amazonaws.com/$INPUT_REPO:$INPUT_TAG"
 
@@ -61,8 +63,8 @@ function assume_role() {
 function pull_and_run(){
   echo "Pulling image..."
   docker pull $PULL_URL
-  echo "Starting instance"
-  docker run --publish 6379:6379 --detach $PULL_URL
+  echo "Starting instance of ${INPUT_NAME}"
+  docker run  --name $INPUT_NAME --publish $INPUT_PORT:$INPUT_PORT --detach $PULL_URL
 }
 
 main

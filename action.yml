@@ -17,6 +17,12 @@ inputs:
   tag:
     description: Tag of image to use
     required: true
+  port:
+    description: Port to publish
+    required: true
+  name:
+    description: Name for the container
+    required: true
   registry_ids:
     description: A comma-delimited list of AWS account IDs that are associated with the ECR registries. If you do not specify a registry, the default ECR registry is assumed
     required: false
