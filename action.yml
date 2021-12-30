@@ -1,0 +1,36 @@
+name: AWS ECR PULL AND RUN
+author: Christoph Groll <c.groll@hotmail.de>
+branding:
+  icon: download-cloud
+  color: orange
+description: Pull and run docker images from your private AWS ECR Repo
+inputs:
+  access_key_id:
+    description: The AWS access key id
+    required: true
+  secret_access_key:
+    description: The AWS secret access key
+    required: true
+  account_id:
+    description: AWS Account ID
+    required: true
+  tag:
+    description: Tag of image to use
+    required: true
+  registry_ids:
+    description: A comma-delimited list of AWS account IDs that are associated with the ECR registries. If you do not specify a registry, the default ECR registry is assumed
+    required: false
+    default: ''
+  assume_role:
+    description: A role to assume under the account_id account.
+    required: false
+    default: ''
+  repo:
+    description: Name of your ECR repository
+    required: true
+  region:
+    description: The AWS region
+    required: true
+runs:
+  using: docker
+  image: Dockerfile
